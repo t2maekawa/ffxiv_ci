@@ -15,7 +15,7 @@
     }
 
     .container {
-      max-width: 820px;
+      max-width: 867px;
       margin: 0 auto;
     }
 
@@ -197,6 +197,7 @@
         <span class="label">${task.label}</span>
         <input type="time" id="time-${index}">
         <button onclick="setCurrentTime(${index})">現在時刻</button>
+        <button onclick="clearTime(${index})">クリア</button>
         <input type="text" class="note" id="note-${index}" value="${task.note}" readonly maxlength="21">
         <span class="checkbox-label">仕込み</span>
         <input type="checkbox" class="checkbox" id="check-${index}">
@@ -210,6 +211,11 @@
       const mm = String(now.getMinutes()).padStart(2, '0');
       document.getElementById(`time-${index}`).value = `${hh}:${mm}`;
     }
+
+    function clearTime(index) {
+    document.getElementById(`time-${index}`).value = '';
+    }
+
   </script>
 </body>
 </html>
