@@ -130,6 +130,12 @@
       flex-shrink: 0;
     }
 
+    /* 90分経過ハイライト用 */
+    .highlight {
+      background-color: #d94c4c !important;
+      color: #fff !important;
+    }
+
     @media (max-width: 600px) {
       .row {
         flex-wrap: wrap;
@@ -215,6 +221,41 @@
     function clearTime(index) {
     document.getElementById(`time-${index}`).value = '';
     }
+
+
+
+  //90分経過した項目をハイライト
+    function checkElapsedTime() {
+      const now = new Date();
+
+      tasks.forEach((_, index) => {
+        const timeInput = document.getElementById(`time-${index}`);
+        const row = timeInput.closest('.row');
+        const value = timeInput.value;
+
+        if (value) {
+          const [hours, minutes] = value.split(':').map(Number);
+          const inputTime = new Date();
+          inputTime.setHours(hours);
+          inputTime.setMinutes(minutes);
+          inputTime.setSeconds(0);
+
+          const diffMinutes = (now - inputTime) / (1000 * 60);
+
+          if (diffMinutes >= 90) {
+            row.classList.add('highlight');
+          } else {
+            row.classList.remove('highlight');
+          }
+          } else {
+          row.classList.remove('highlight');
+        }
+      });
+  }
+
+  // 1秒ごとにチェック
+  setInterval(checkElapsedTime, 1000);
+
 
   </script>
 </body>
