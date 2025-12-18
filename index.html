@@ -1,268 +1,278 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>クレセントアイルCE管理</title>
-  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+2:wght@400;700&display=swap" rel="stylesheet" />
-  <style>
-    body {
-      margin: 0;
-      padding: 20px;
-      font-family: 'M PLUS 2', sans-serif;
-      background-color: #1a2238;
-      color: #ffffff;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>クレセントアイルCE管理</title>
 
-    .container {
-      max-width: 867px;
-      margin: 0 auto;
-    }
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+2:wght@400;700&display=swap" rel="stylesheet">
 
-    h2 {
-      margin-bottom: 20px;
-      font-weight: 700;
-      text-align: left;
-    }
+<style>
+body{
+  margin:0;
+  padding:20px;
+  font-family:'M PLUS 2',sans-serif;
+  background:#1a2238;
+  color:#fff;
+}
 
-    .row {
-      display: flex;
-      align-items: center;
-      margin-bottom: 8px;
-      padding: 6px 8px;
-      border-radius: 4px;
-      position: relative;
-      min-height: 30px;
-      justify-content: flex-start;
-    }
+.container{max-width:963px;margin:auto;}
+h2{margin-bottom:12px; text-align:center;}
 
-    .row-yellow {
-      background-color: #f4e38a;
-      color: #000;
-    }
+.columns{
+  display:flex;
+  gap:16px;
+  align-items:flex-start;
+}
 
-    .row-orange {
-      background-color: #f5c493;
-      color: #000;
-    }
+/* ===== 60分枠 ===== */
+.task60-column{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
 
-    .row-purple {
-      background-color: #cbb4e7;
-      color: #000;
-    }
+.task60{
+  background:#2a5f78;
+  border-radius:6px;
+  padding:6px;
+  width:100px;
+  color:#fff;
+}
 
-    .row-green {
-      background-color: #a9ddb4;
-      color: #000;
-    }
+.task60 .label60{
+  font-size:12px;
+  font-weight:700;
+  text-align:center;
+  margin-bottom:4px;
+}
 
-    .row-blue {
-      background-color: #a2c8e5;
-      color: #000;
-    }
+.task60 input[type="time"]{
+  width:95%;
+  font-size:12px;
+  padding:2px;
+  margin-bottom:4px;
+  background:#0f2028;
+  color:#fff;
+  border:1px solid #355e6f;
+}
 
-    .row-cyan {
-      background-color: #a1e0e7;
-      color: #000;
-    }
+.task60 .buttons{
+  display:flex;
+  gap:4px;
+  margin-bottom:4px;
+}
 
-    .label {
-      width: 350px;
-      flex-shrink: 0;
-      font-weight: bold;
-    }
+.task60 button{
+  flex:1;
+  font-size:11px;
+  padding:2px 0;
+}
 
-    input[type="time"] {
-      background: #1e1e2e;
-      color: #fff;
-      border: 1px solid #444;
-      padding: 2px 4px;
-      width: 72px;
-      margin-right: 8px;
-      font-size: 14px;
-    }
+/* ★ 60分枠ハイライト */
+.task60.highlight{
+  background:#c63c3c !important;
+  color:#fff !important;
+}
 
-    input.note {
-      background: #1e1e2e;
-      color: #ccc;
-      border: 1px solid #444;
-      padding: 4px;
-      width: 180px;
-      margin-right: 0;
-      cursor: default;
-      font-size: 13px;
-    }
+/* ===== 90分枠 ===== */
+.column90{flex:1;}
 
-    input.note[readonly] {
-      user-select: text;
-    }
+.row{
+  display:flex;
+  align-items:center;
+  margin-bottom:8px;
+  padding:6px 8px;
+  border-radius:4px;
+}
 
-    button {
-      background: #3a4b6e;
-      color: #fff;
-      border: 1px solid #5a6b8e;
-      padding: 4px 8px;
-      cursor: pointer;
-      font-size: 13px;
-      margin-right: 8px;
-    }
+.row-yellow{background:#f4e38a;color:#000;}
+.row-orange{background:#f5c493;color:#000;}
+.row-purple{background:#cbb4e7;color:#000;}
+.row-green{background:#a9ddb4;color:#000;}
+.row-blue{background:#a2c8e5;color:#000;}
+.row-cyan{background:#a1e0e7;color:#000;}
 
-    button:hover {
-      background: #4b5c80;
-    }
+.label{
+  width:340px;
+  font-weight:bold;
+}
 
-    .checkbox-label {
-      margin-left: 12px;
-      white-space: nowrap;
-      font-size: 13px;
-      user-select: none;
-      flex-shrink: 0;
-      color: inherit;
-    }
+input[type="time"]{
+  background:#1e1e2e;
+  color:#fff;
+  border:1px solid #444;
+  padding:2px 4px;
+  width:72px;
+  margin-right:6px;
+}
 
-    .checkbox {
-      margin-left: 6px;
-      width: 18px;
-      height: 18px;
-      cursor: pointer;
-      background-color: transparent;
-      border: none;
-      flex-shrink: 0;
-    }
+input.note{
+  background:#1e1e2e;
+  color:#ccc;
+  border:1px solid #444;
+  padding:4px;
+  width:180px;
+}
 
-    /* 90分経過ハイライト用 */
-    .highlight {
-      background-color: #d94c4c !important;
-      color: #fff !important;
-    }
+button{
+  background:#3a4b6e;
+  color:#fff;
+  border:1px solid #5a6b8e;
+  cursor:pointer;
+  margin-right:6px;
+}
 
-    @media (max-width: 600px) {
-      .row {
-        flex-wrap: wrap;
-        justify-content: center;
-        min-height: auto;
-      }
+button:hover{background:#4b5c80;}
 
-      .checkbox-label {
-        margin-left: 0;
-        margin-top: 8px;
-      }
+.checkbox-label{
+  margin-left:8px;
+  font-size:13px;
+  white-space:nowrap;
+}
 
-      .checkbox {
-        margin-left: 0;
-        margin-top: 8px;
-      }
+/* ★ 90分枠ハイライト */
+.row.highlight{
+  background:#d94c4c !important;
+  color:#fff !important;
+}
 
-      input.note {
-        width: 100%;
-        margin-right: 0;
-      }
-    }
-  </style>
+@media(max-width:900px){
+  .columns{flex-direction:column;}
+}
+</style>
 </head>
+
 <body>
-  <div class="container">
-    <h2>クレセントアイル:南征編</h2>
-    <div id="taskContainer"></div>
-  </div>
+<div class="container">
+<h2>クレセントアイル:南征編</h2>
 
-  <div class="container">
-    <h2>更新とか</h2>
-    <h3>
-      ・90分経過したら背景色が赤になるようにした
-  </div>
+<div class="columns">
 
-  <script>
-    const taskContainer = document.getElementById('taskContainer');
+<!-- ===== 左：60分枠 ===== -->
+<div class="task60-column" id="task60"></div>
 
-    const tasks = [
-      { label: "鳥嫌い巨獣「ネオガルラ」", note: "KL1   ガルラ" },
-      { label: "黒の連隊", note: "KL14 パンサー" },
-      { label: "伝説の鮫「ニーム・ペタロドゥス」", note: "KL7   レッサーペタロドゥス" },
-      { label: "呪いの商亀「コイントートス」", note: "KL7   ケートス" },
-      { label: "セキュリティ・コマンドー", note: "KL8   ウラグナイト" },
-      { label: "石造りの守護騎士たち", note: "KL4   マロリス" },
-      { label: "二足の獅子「ランパントライオン」", note: "KL5   ファン" },
-      { label: "復元された獅子像「リペアドライオン」", note: "KL20 ステータント" },
-      { label: "昏き篝火「ヒンキーパンク」", note: "KL11 ハルピュイア" },
-      { label: "神秘の偶像「ミシカルアイドル」", note: "KL13 ビブロス" },
-      { label: "模造されしもの「水晶竜」", note: "KL19 クレイクロウ" },
-      { label: "脳髄愛好家「マインドフレイア」", note: "KL15 モンク" },
-      { label: "忍び寄る爪「デスクロー」", note: "KL16 ブラックガード" },
-      { label: "怒れる人造人間「クレセント・バーサーカー」", note: "KL17 デーモンポーン" },
-      { label: "封印大妖「クロイスターデーモン」", note: "KL20 インクステイン" }
-    ];
+<!-- ===== 右：90分枠 ===== -->
+<div class="column90">
+  <div id="task90"></div>
+</div>
 
-    const colorClasses = [
-      'row-yellow', 'row-yellow',
-      'row-orange', 'row-orange', 'row-orange',
-      'row-purple', 'row-purple', 'row-purple',
-      'row-green', 'row-green', 'row-green',
-      'row-blue', 'row-blue', 'row-blue',
-      'row-cyan'
-    ];
+</div>
+</div>
 
-    tasks.forEach((task, index) => {
-      const row = document.createElement('div');
-      row.className = `row ${colorClasses[index]}`;
-      row.innerHTML = `
-        <span class="label">${task.label}</span>
-        <input type="time" id="time-${index}">
-        <button onclick="setCurrentTime(${index})">現在時刻</button>
-        <button onclick="clearTime(${index})">クリア</button>
-        <input type="text" class="note" id="note-${index}" value="${task.note}" readonly maxlength="21">
-        <span class="checkbox-label">仕込み</span>
-        <input type="checkbox" class="checkbox" id="check-${index}">
-      `;
-      taskContainer.appendChild(row);
-    });
+<script>
+/* ===== データ ===== */
+const tasks60=[
+  {label:"ポット: 北"},
+  {label:"ポット: 南"}
+];
 
-    function setCurrentTime(index) {
-      const now = new Date();
-      const hh = String(now.getHours()).padStart(2, '0');
-      const mm = String(now.getMinutes()).padStart(2, '0');
-      document.getElementById(`time-${index}`).value = `${hh}:${mm}`;
+const tasks90=[
+  {label:"鳥嫌い巨獣「ネオガルラ」",note:"KL1   ガルラ"},
+  {label:"黒の連隊",note:"KL14 パンサー"},
+  {label:"伝説の鮫「ニーム・ペタロドゥス」",note:"KL7   レッサーペタロドゥス"},
+  {label:"呪いの商亀「コイントートス」",note:"KL7   ケートス"},
+  {label:"セキュリティ・コマンドー",note:"KL8   ウラグナイト"},
+  {label:"石造りの守護騎士たち",note:"KL4   マロリス"},
+  {label:"二足の獅子「ランパントライオン」",note:"KL5   ファン"},
+  {label:"復元された獅子像「リペアドライオン」",note:"KL20 ステータント"},
+  {label:"昏き篝火「ヒンキーパンク」",note:"KL11 ハルピュイア"},
+  {label:"神秘の偶像「ミシカルアイドル」",note:"KL13 ビブロス"},
+  {label:"模造されしもの「水晶竜」",note:"KL19 クレイクロウ"},
+  {label:"脳髄愛好家「マインドフレイア」",note:"KL15 モンク"},
+  {label:"忍び寄る爪「デスクロー」",note:"KL16 ブラックガード"},
+  {label:"怒れる人造人間「クレセント・バーサーカー」",note:"KL17 デーモンポーン"},
+  {label:"封印大妖「クロイスターデーモン」",note:"KL20 インクステイン"}
+];
+
+const colors=[
+'row-yellow','row-yellow',
+'row-orange','row-orange','row-orange',
+'row-purple','row-purple','row-purple',
+'row-green','row-green','row-green',
+'row-blue','row-blue','row-blue',
+'row-cyan'
+];
+
+/* ===== 生成 ===== */
+// 60分
+const c60=document.getElementById('task60');
+tasks60.forEach(t=>{
+  const d=document.createElement('div');
+  d.className='task60';
+  d.dataset.limit=60;
+  d.innerHTML=`
+    <div class="label60">${t.label}</div>
+    <input type="time">
+    <div class="buttons">
+      <button onclick="now(this)">現在</button>
+      <button onclick="clr(this)">消去</button>
+    </div>
+  `;
+  c60.appendChild(d);
+});
+
+// 90分
+const c90=document.getElementById('task90');
+tasks90.forEach((t,i)=>{
+  const r=document.createElement('div');
+  r.className=`row ${colors[i]}`;
+  r.dataset.limit=90;
+  r.innerHTML=`
+    <span class="label">${t.label}</span>
+    <input type="time">
+    <button onclick="now(this)">現在時刻</button>
+    <button onclick="clr(this)">クリア</button>
+    <input class="note" value="${t.note}" readonly>
+    <span class="checkbox-label">仕込み</span>
+    <input type="checkbox">
+  `;
+  c90.appendChild(r);
+});
+
+/* ===== 共通処理 ===== */
+function now(b){
+  const box=b.closest('[data-limit]');
+  const i=box.querySelector('input[type="time"]');
+  const n=new Date();
+  i.value=
+    String(n.getHours()).padStart(2,'0')+':' +
+    String(n.getMinutes()).padStart(2,'0');
+}
+
+function clr(b){
+  const box=b.closest('[data-limit]');
+  box.querySelector('input[type="time"]').value='';
+}
+
+function check(){
+  const n = new Date();
+
+  document.querySelectorAll('[data-limit]').forEach(r=>{
+    const i = r.querySelector('input[type="time"]');
+    if(!i.value){
+      r.classList.remove('highlight');
+      return;
     }
 
-    function clearTime(index) {
-    document.getElementById(`time-${index}`).value = '';
+    const [h,m] = i.value.split(':').map(Number);
+    const t = new Date();
+    t.setHours(h,m,0,0);
+
+    // ★ 日付またぎ補正
+    if(t > n){
+      t.setDate(t.getDate() - 1);
     }
 
+    r.classList.toggle(
+      'highlight',
+      (n - t) / 60000 >= Number(r.dataset.limit)
+    );
+  });
+}
 
 
-  //90分経過した項目をハイライト
-    function checkElapsedTime() {
-      const now = new Date();
-
-      tasks.forEach((_, index) => {
-        const timeInput = document.getElementById(`time-${index}`);
-        const row = timeInput.closest('.row');
-        const value = timeInput.value;
-
-        if (value) {
-          const [hours, minutes] = value.split(':').map(Number);
-          const inputTime = new Date();
-          inputTime.setHours(hours);
-          inputTime.setMinutes(minutes);
-          inputTime.setSeconds(0);
-
-          const diffMinutes = (now - inputTime) / (1000 * 60);
-
-          if (diffMinutes >= 90) {
-            row.classList.add('highlight');
-          } else {
-            row.classList.remove('highlight');
-          }
-          } else {
-          row.classList.remove('highlight');
-        }
-      });
-  }
-
-  // 1秒ごとにチェック
-  setInterval(checkElapsedTime, 1000);
-
-
-  </script>
+setInterval(check,1000);
+</script>
 </body>
 </html>
