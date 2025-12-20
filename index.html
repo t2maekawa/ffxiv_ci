@@ -215,6 +215,12 @@ button:hover{background:#4b5c80;}
   color:#000 !important;
 }
 
+/* 時刻入力の時計アイコンを白にする（Chrome / Edge） */
+input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
+}
+
 </style>
 </head>
 
