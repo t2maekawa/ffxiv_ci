@@ -221,6 +221,25 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   cursor: pointer;
 }
 
+/* 現在時刻表示 */
+.current-time{
+  text-align:center;
+  margin-bottom:16px;
+  color:#9fd3ff;
+}
+
+.ct-label{
+  font-size:16px;
+  font-weight:bold;
+  line-height:1.6;
+}
+
+.ct-time{
+  font-size:26px;
+  font-weight:bold;
+  line-height:1.4;
+}
+
 </style>
 </head>
 
@@ -241,13 +260,18 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   </button>
 </div>
 
+<div id="current-time" class="current-time">
+  <div class="ct-label">現在時刻</div>
+  <div class="ct-time">--:--:--</div>
+</div>
+
 <div class="columns">
   <div class="task60-column" id="task60"></div>
   <div class="column90"><div id="task90"></div></div>
 </div>
 
 <div class="info-area" style="margin-top:28px;">
-  <h3>v1.3.1-release (2025-12-19)</h3>
+  <h3>v1.3.1-release (2025-12-20)</h3>
   <div class="info-block">
     <strong>追加機能</strong>
     <ul>
@@ -517,6 +541,20 @@ function clearAllTimers(){
 
 loadState();
 setInterval(check,1000);
+
+/* ===== 現在時刻表示 ===== */
+const currentTimeEl = document.querySelector('.ct-time');
+
+function updateCurrentTime(){
+  const now = new Date();
+  const hh = String(now.getHours()).padStart(2,'0');
+  const mm = String(now.getMinutes()).padStart(2,'0');
+  const ss = String(now.getSeconds()).padStart(2,'0');
+  currentTimeEl.textContent = `${hh}:${mm}:${ss}`;
+}
+
+updateCurrentTime();
+setInterval(updateCurrentTime, 1000);
 </script>
 </body>
 </html>
