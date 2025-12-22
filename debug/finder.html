@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body{margin:0;background:#000;}
+.map{
+  position:relative;
+  max-width:1050px;
+  margin:auto;
+}
+.map img{
+  width:100%;
+  display:block;
+}
+.point{
+  position:absolute;
+  width:8px;
+  height:8px;
+  background:red;
+  border-radius:50%;
+  transform:translate(-50%,-50%);
+}
+.coords{
+  position:fixed;
+  bottom:10px;
+  left:10px;
+  background:#111;
+  color:#0f0;
+  padding:6px;
+  font-size:13px;
+}
+</style>
+</head>
+<body>
+
+<div class="map" id="map">
+  <img src="map_silver.png">
+</div>
+
+<div class="coords" id="coords">click</div>
+
+<script>
+const map = document.getElementById('map');
+const coords = document.getElementById('coords');
+
+map.addEventListener('click', e=>{
+  const rect = map.getBoundingClientRect();
+  const x = ((e.clientX - rect.left) / rect.width * 100).toFixed(2);
+  const y = ((e.clientY - rect.top) / rect.height * 100).toFixed(2);
+
+  const p = document.createElement('div');
+  p.className = 'point';
+  p.style.left = x + '%';
+  p.style.top  = y + '%';
+  map.appendChild(p);
+
+  coords.textContent = `top:${y}, left:${x}`;
+});
+</script>
+
+</body>
+</html>

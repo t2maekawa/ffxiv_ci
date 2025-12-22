@@ -40,6 +40,39 @@ h2{margin-bottom:12px; text-align:center;}
   color:#fff;
 }
 
+.task60-inner{
+  width:100% !important;
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;   /* ← 完全中央基準 */
+  gap:4px !important;
+}
+
+/* 時刻入力は inner 基準で横いっぱい */
+.task60-inner input[type="time"] {
+  width: 70px !important;       /* 横幅 */
+  height: 24px !important;      /* 高さ */
+  padding: 2px 4px !important;  /* 内側余白 */
+  margin-left:6px;
+  font-size: 12px !important;   /* 文字サイズ */
+  border: 1px solid #355e6f; /* 枠線 */
+  border-radius: 4px !important;         /* 角丸 */
+  box-sizing: border-box !important;     /* 幅にパディングとボーダーを含める */
+}
+
+/* ボタンは中身幅で中央 */
+.task60-inner .buttons{
+  display:flex !important;
+  gap:4px !important;
+  justify-content:center  !important;
+}
+
+/* ボタンサイズを固定（歪み防止） */
+.task60-inner button{
+  width:42px !important;
+  flex:none !important;
+}
+
 .task60 .label60{
   font-size:12px;
   font-weight:700;
@@ -48,7 +81,7 @@ h2{margin-bottom:12px; text-align:center;}
 }
 
 .task60 input[type="time"]{
-  width:95%;
+  width:100%;
   font-size:12px;
   padding:2px;
   margin-bottom:4px;
@@ -58,21 +91,36 @@ h2{margin-bottom:12px; text-align:center;}
 }
 
 .task60 .buttons{
-  display:flex;
-  gap:4px;
-  margin-bottom:4px;
+  display:flex !important;
+  gap:4px !important;
+  margin-left:6px;
 }
 
-.task60 button{
-  flex:1;
-  font-size:11px;
-  padding:2px 0;
+/* ===== マップ遷移ボタン ===== */
+.map-link{
+  width:100px;        /* task60 と同じ */
+}
+
+.map-button{
+  width:112%;
+  padding:6px;
+  font-size:12px;
+  font-weight:700;
+  background:#2a5f78;
+  color:#fff;
+  border:1px solid #355e6f;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.map-button:hover{
+  background:#34718f;
 }
 
 /* ETA表示 */
 .task60 .eta{
   font-size:16px;
-  text-align:left;
+  text-align:center;
   opacity:1;
   font-weight:bold;
 }
@@ -266,11 +314,35 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 </div>
 
 <div class="columns">
-  <div class="task60-column" id="task60"></div>
-  <div class="column90"><div id="task90"></div></div>
+  <div class="task60-column" id="task60">
+    <!-- ★ 60分枠の下にボタン -->
+    <div class="map-link" style="text-align:center;">
+      <a href="map.html" target="_blank" style="text-decoration:none;">
+        <button class="map-button">銅 / 銀箱</br>チェックマップ</button>
+      </a>
+    </div>
+  </div>
+
+  <div class="column90">
+    <div id="task90"></div>
+  </div>
 </div>
 
 <div class="info-area" style="margin-top:28px;">
+  <h3>v1.4.0-release (2025-12-23)</h3>
+  <div class="info-block">
+    <strong>追加機能</strong>
+    <ul>
+      <div>新たに"銅 / 銀箱チェックマップ"を追加しました。ポットタイマーの上にあるボタンを押すと、新しいタブで開きます。</div>
+    </br>
+      <li>宝箱をクリックすると「取得済み」として記録されます。</li>
+      <li>取得状況、表示状態、ズーム倍率は自動的に保存されます。</li>
+      <li>銅箱／銀箱ボタンで表示の切り替えができます。</li>
+      <li>＋／− ボタンでマップを拡大・縮小できます。</li>
+      <li>ズームリセットは倍率のリセット、全取得リセットは宝箱のチェック状態をリセットします。</li>
+    </ul>
+  </div>
+  <hr style="border-color:#355e6f;">
   <h3>v1.3.1-release (2025-12-20)</h3>
   <div class="info-block">
     <strong>追加機能</strong>
@@ -351,20 +423,27 @@ const colors=[
 ];
 
 /* ===== 生成 ===== */
-const c60=document.getElementById('task60');
+const c60 = document.getElementById('task60');
 tasks60.forEach((t,i)=>{
   c60.insertAdjacentHTML('beforeend',`
     <div class="task60" data-limit="60" data-id="60-${i}" data-beeped="0">
       <div class="label60">${t.label}</div>
-      <input type="time">
-      <div class="buttons">
-        <button onclick="now(this)">現在</button>
-        <button onclick="clr(this)">消去</button>
+
+      <!-- ★ 追加：操作系ラッパー -->
+      <div class="task60-inner">
+        <input type="time">
+
+        <div class="buttons">
+          <button onclick="now(this)">現在</button>
+          <button onclick="clr(this)">消去</button>
+        </div>
       </div>
+
       <div class="eta"></div>
     </div>
   `);
 });
+
 
 const c90=document.getElementById('task90');
 tasks90.forEach((t,i)=>{
@@ -457,7 +536,7 @@ function updateETA(box){
   const t = new Date();
   t.setHours(h,m,0,0);
   t.setMinutes(t.getMinutes()+Number(box.dataset.limit));
-  box.querySelector('.eta').textContent = `⏰ ${String(t.getHours()).padStart(2,'0')}:${String(t.getMinutes()).padStart(2,'0')}`;
+  box.querySelector('.eta').textContent = `次:  ${String(t.getHours()).padStart(2,'0')}:${String(t.getMinutes()).padStart(2,'0')}`;
 
   // ETA更新時に音フラグをリセット（60分枠のみ）
   if(box.dataset.limit=="60") box.dataset.beeped="0";
