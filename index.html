@@ -246,6 +246,12 @@ input[type="time"]::-webkit-calendar-picker-indicator{
   font-weight:700;
   color:#ffffff;
 }
+
+#readme h1 + p > strong:only-child,
+#readme h2 + p > strong:only-child,
+#readme h3 + p > strong:only-child{
+  margin-top:1.6em;
+}
 </style>
 </head>
 
@@ -296,6 +302,7 @@ input[type="time"]::-webkit-calendar-picker-indicator{
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
 <script>
+marked.setOptions({ breaks: true });
 const STORAGE_KEY='crescent_ce_state';
 const VOLUME_KEY='crescent_ce_volume';
 
