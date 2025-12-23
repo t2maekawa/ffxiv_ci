@@ -177,6 +177,17 @@ input[type="time"]::-webkit-calendar-picker-indicator{
   filter:invert(1);
   cursor:pointer;
 }
+
+.info-area h1,
+.info-area h2,
+.info-area h3{
+  text-align:center;
+  color:#9fd3ff;
+}
+
+.info-area ul{
+  padding-left:20px;
+}
 </style>
 </head>
 
@@ -216,6 +227,10 @@ input[type="time"]::-webkit-calendar-picker-indicator{
 </div>
 </div>
 
+</div>
+
+<div class="info-area">
+  <div id="readme"></div>
 </div>
 
 <audio id="beep" src="beep.mp3" preload="auto"></audio>
@@ -349,25 +364,60 @@ function clr(btn){
   box.querySelector('input[type="time"]').value='';
   box.querySelector('.eta').textContent='';
   box.classList.remove('highlight','warning');
-  if(box.dataset.limit==="60") box.dataset.beeped="0";
+
+  if(box.dataset.limit==="60"){
+    box.dataset.beeped="0";
+    delete box.dataset.etaTime;
+  }
+
   saveState();
 }
 
 function updateETA(box){
-  const i=box.querySelector('input[type="time"]');
+  const i = box.querySelector('input[type="time"]');
   if(!i.value) return;
-  const [h,m]=i.value.split(':').map(Number);
-  const t=new Date();
-  t.setHours(h,m,0,0);
-  t.setMinutes(t.getMinutes()+Number(box.dataset.limit));
-  box.querySelector('.eta').textContent=`次: ${String(t.getHours()).padStart(2,'0')}:${String(t.getMinutes()).padStart(2,'0')}`;
-  if(box.dataset.limit==="60") box.dataset.beeped="0";
+
+  const [h,m] = i.value.split(':').map(Number);
+  const start = new Date();
+  start.setHours(h,m,0,0);
+
+  const eta = new Date(start);
+  eta.setMinutes(eta.getMinutes() + Number(box.dataset.limit));
+
+  const hh = String(eta.getHours()).padStart(2,'0');
+  const mm = String(eta.getMinutes()).padStart(2,'0');
+
+  if(box.dataset.limit === "60"){
+    box.querySelector('.eta').innerHTML =
+      `次: ${hh}:${mm}<br>あと -- 分後`;
+    box.dataset.etaTime = eta.getTime(); // ★ ETAを保存
+    box.dataset.beeped = "0";
+  }else{
+    box.querySelector('.eta').textContent =
+      `次: ${hh}:${mm}`;
+  }
 }
 
 function check(){
   const now=new Date();
   document.querySelectorAll('[data-limit]').forEach(r=>{
     const i=r.querySelector('input[type="time"]');
+    // ===== 60分枠：残り時間表示（ETA参照）=====
+    if(r.dataset.limit === "60" && r.dataset.etaTime){
+      const nowTime = now.getTime();
+      const diff = Math.max(0, r.dataset.etaTime - nowTime);
+
+      const min = Math.ceil(diff / 60000); // 分のみ（切り上げ）
+
+      const mm = String(min).padStart(2,'0');
+
+      const etaDiv = r.querySelector('.eta');
+      if(etaDiv){
+        const lines = etaDiv.innerHTML.split('<br>');
+        lines[1] = `あと ${mm} 分後`;
+        etaDiv.innerHTML = lines.join('<br>');
+      }
+    }
     if(!i.value){
       r.classList.remove('highlight','warning');
       return;
@@ -414,7 +464,11 @@ function clearAllTimers(){
     box.querySelector('input[type="time"]').value='';
     box.querySelector('.eta').textContent='';
     box.classList.remove('highlight','warning');
-    if(box.dataset.limit==="60") box.dataset.beeped="0";
+
+    if(box.dataset.limit==="60"){
+      box.dataset.beeped="0";
+      delete box.dataset.etaTime; // ★ ETA基準を完全破棄
+    }
   });
   saveState();
 }
@@ -430,6 +484,17 @@ function updateCurrentTime(){
 }
 updateCurrentTime();
 setInterval(updateCurrentTime,1000);
+
+fetch('./README.md')
+  .then(res => res.text())
+  .then(md => {
+    document.getElementById('readme').innerHTML = marked.parse(md);
+  })
+  .catch(() => {
+    document.getElementById('readme').textContent =
+      'README.md の読み込みに失敗しました';
+  });
+
 </script>
 
 </body>
