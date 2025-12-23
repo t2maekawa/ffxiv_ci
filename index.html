@@ -15,22 +15,11 @@ body{
   background:#1a2238;
   color:#fff;
 }
-
 .container{max-width:1050px;margin:auto;}
 h2{margin-bottom:12px; text-align:center;}
+.columns{display:flex;gap:16px;align-items:flex-start;}
 
-.columns{
-  display:flex;
-  gap:16px;
-  align-items:flex-start;
-}
-
-.task60-column{
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-}
-
+.task60-column{display:flex;flex-direction:column;gap:8px;}
 .task60{
   background:#2a5f78;
   border-radius:6px;
@@ -38,64 +27,53 @@ h2{margin-bottom:12px; text-align:center;}
   width:100px;
   color:#fff;
 }
-
 .task60-inner{
-  width:100% !important;
-  display:flex !important;
-  flex-direction:column !important;
-  align-items:center !important;
-  gap:4px !important;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:4px;
 }
-
-.task60-inner input[type="time"] {
-  width: 70px !important;
-  height: 24px !important;
-  padding: 2px 4px !important;
+.task60-inner input[type="time"]{
+  width:70px;
+  height:24px;
+  padding:2px 4px;
   margin-left:6px;
-  font-size: 12px !important;
-  border: 1px solid #355e6f;
-  border-radius: 4px !important;
-  box-sizing: border-box !important;
+  font-size:12px;
+  border:1px solid #355e6f;
+  border-radius:4px;
+  box-sizing:border-box;
 }
-
 .task60-inner .buttons{
-  display:flex !important;
-  gap:4px !important;
-  justify-content:center  !important;
+  display:flex;
+  gap:4px;
+  justify-content:center;
 }
-
 .task60-inner button{
-  width:42px !important;
-  flex:none !important;
+  width:42px;
+  flex:none;
 }
-
 .task60 .label60{
   font-size:12px;
   font-weight:700;
   text-align:center;
   margin-bottom:4px;
 }
-
-.task60 input[type="time"]{
-  width:100%;
-  font-size:12px;
-  padding:2px;
-  margin-bottom:4px;
-  background:#0f2028;
+.task60 .eta{
+  font-size:16px;
+  text-align:center;
+  font-weight:bold;
+}
+.task60.highlight{
+  background:#c63c3c;
   color:#fff;
-  border:1px solid #355e6f;
+}
+.task60.warning{
+  background:#f4e38a;
+  color:#000;
 }
 
-.task60 .buttons{
-  display:flex !important;
-  gap:4px !important;
-  margin-left:6px;
-}
-
-.map-link{
-  width:100px;
-}
-
+.map-link{width:100px;}
 .map-button{
   width:112%;
   padding:6px;
@@ -107,25 +85,9 @@ h2{margin-bottom:12px; text-align:center;}
   border-radius:6px;
   cursor:pointer;
 }
-
-.map-button:hover{
-  background:#34718f;
-}
-
-.task60 .eta{
-  font-size:16px;
-  text-align:center;
-  opacity:1;
-  font-weight:bold;
-}
-
-.task60.highlight{
-  background:#c63c3c !important;
-  color:#fff !important;
-}
+.map-button:hover{background:#34718f;}
 
 .column90{flex:1;}
-
 .row{
   display:flex;
   align-items:center;
@@ -133,7 +95,6 @@ h2{margin-bottom:12px; text-align:center;}
   padding:6px 8px;
   border-radius:4px;
 }
-
 .row-yellow{background:#f4e38a;color:#000;}
 .row-orange{background:#f5c493;color:#000;}
 .row-purple{background:#cbb4e7;color:#000;}
@@ -141,11 +102,7 @@ h2{margin-bottom:12px; text-align:center;}
 .row-blue{background:#a2c8e5;color:#000;}
 .row-cyan{background:#a1e0e7;color:#000;}
 
-.label{
-  width:340px;
-  font-weight:bold;
-}
-
+.label{width:340px;font-weight:bold;}
 input[type="time"]{
   background:#1e1e2e;
   color:#fff;
@@ -154,7 +111,6 @@ input[type="time"]{
   width:72px;
   margin-right:6px;
 }
-
 input.note{
   background:#1e1e2e;
   color:#ccc;
@@ -162,7 +118,6 @@ input.note{
   padding:4px;
   width:180px;
 }
-
 button{
   background:#3a4b6e;
   color:#fff;
@@ -170,7 +125,6 @@ button{
   cursor:pointer;
   margin-right:6px;
 }
-
 button:hover{background:#4b5c80;}
 
 .checkbox-label{
@@ -178,29 +132,17 @@ button:hover{background:#4b5c80;}
   font-size:13px;
   white-space:nowrap;
 }
-
-.eta{
-  margin-left:8px;
-  font-size:15px;
-  white-space:nowrap;
-  opacity:0.9;
-  font-weight:bold;
-}
-
 .row .eta{
   display:inline-block;
   width:78px;
   margin-left:8px;
   font-size:15px;
   white-space:nowrap;
-  opacity:0.9;
   font-weight:bold;
-  text-align:left;
 }
-
 .row.highlight{
-  background:#d94c4c !important;
-  color:#fff !important;
+  background:#d94c4c;
+  color:#fff;
 }
 
 @media(max-width:900px){
@@ -212,46 +154,9 @@ button:hover{background:#4b5c80;}
   margin-bottom:12px;
   font-size:14px;
 }
-
 .volume-box input[type="range"]{
   width:160px;
   vertical-align:middle;
-}
-
-.info-area{
-  margin-top:28px;
-  padding:14px 18px;
-  background:#11182b;
-  border-radius:8px;
-  font-size:14px;
-  line-height:1.6;
-  opacity:0.95;
-}
-
-.info-area h3{
-  margin:0 0 10px;
-  font-size:16px;
-  text-align:center;
-}
-
-.info-block{
-  margin-bottom:10px;
-}
-
-.info-block strong{
-  display:block;
-  margin-bottom:2px;
-  color:#9fd3ff;
-}
-
-.task60.warning{
-  background:#f4e38a !important;
-  color:#000 !important;
-}
-
-input[type="time"]::-webkit-calendar-picker-indicator {
-  filter: invert(1);
-  cursor: pointer;
 }
 
 .current-time{
@@ -259,148 +164,106 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   margin-bottom:16px;
   color:#9fd3ff;
 }
-
 .ct-label{
   font-size:16px;
   font-weight:bold;
-  line-height:1.6;
 }
-
 .ct-time{
   font-size:26px;
   font-weight:bold;
-  line-height:1.4;
 }
 
+input[type="time"]::-webkit-calendar-picker-indicator{
+  filter:invert(1);
+  cursor:pointer;
+}
 </style>
 </head>
 
 <body>
 <div class="container">
+
 <h2>クレセントアイル:南征編</h2>
 
 <div class="volume-box">
-  通知音量：
-  <input id="volume" type="range" min="0" max="0.3" step="0.01">
-  <button onclick="audio.currentTime=0; audio.play();">音テスト</button>
+通知音量：
+<input id="volume" type="range" min="0" max="0.3" step="0.01">
+<button onclick="audio.currentTime=0;audio.play();">音テスト</button>
 </div>
 
 <div style="text-align:center;margin-bottom:12px;">
-  <button onclick="clearAllTimers()" style="font-size:14px;padding:6px 14px;">
-    全タイマークリア
-  </button>
+<button onclick="clearAllTimers()" style="font-size:14px;padding:6px 14px;">
+全タイマークリア
+</button>
 </div>
 
 <div id="current-time" class="current-time">
-  <div class="ct-label">現在時刻</div>
-  <div class="ct-time">--:--:--</div>
+<div class="ct-label">現在時刻</div>
+<div class="ct-time">--:--:--</div>
 </div>
 
 <div class="columns">
-  <div class="task60-column" id="task60">
-    <div class="map-link" style="text-align:center;">
-      <a href="map.html" target="_blank" style="text-decoration:none;">
-        <button class="map-button">銅 / 銀箱</br>チェックマップ</button>
-      </a>
-    </div>
-  </div>
-
-  <div class="column90">
-    <div id="task90"></div>
-  </div>
+<div class="task60-column" id="task60">
+<div class="map-link" style="text-align:center;">
+<a href="map.html" target="_blank" style="text-decoration:none;">
+<button class="map-button">銅 / 銀箱<br>チェックマップ</button>
+</a>
+</div>
 </div>
 
-<div class="info-area" style="margin-top:28px;">
-  <h3>v1.4.0-release (2025-12-23)</h3>
-  <div class="info-block">
-    <strong>追加機能</strong>
-    <ul>
-      <div>新たに"銅 / 銀箱チェックマップ"を追加しました。ポットタイマーの上にあるボタンを押すと、新しいタブで開きます。</div>
-    </br>
-      <li>宝箱をクリックすると「取得済み」として記録されます。</li>
-      <li>取得状況、表示状態、ズーム倍率は自動的に保存されます。</li>
-      <li>銅箱／銀箱ボタンで表示の切り替えができます。</li>
-      <li>＋／− ボタンでマップを拡大・縮小できます。</li>
-      <li>ズームリセットは倍率のリセット、全取得リセットは宝箱のチェック状態をリセットします。</li>
-    </ul>
-  </div>
-  <hr style="border-color:#355e6f;">
-  <h3>v1.3.1-release (2025-12-20)</h3>
-  <div class="info-block">
-    <strong>追加機能</strong>
-    <ul>
-      <div>ポットタイマーに下記の機能を追加しました</div>
-    </br>
-      <li>両方の時刻が空欄の場合、[現在]ボタンを押すことでもう片方は30分前の時刻が自動で入力されます</li>
-      <li>ポットの湧き時間(入力時刻の60分後)になった時、自動で1時間後の時刻に繰り上げられるようになりました</li>
-    </ul>
-  </div>
-  <hr style="border-color:#355e6f;">
-  <h3>v1.3-release (2025-12-19)</h3>
-  <div class="info-block">
-    <strong>追加機能</strong>
-    <ul>
-      <li>ポットタイマーが、次回時刻の5〜1分前に背景を黄色で表示するようになりました</li>
-      <li>ポットタイマーが、5分前になると音を鳴らすようになりました</li>
-      <li>通知音の音量調整とテストボタンを追加しました</li>
-    </ul>
-  </div>
-  <hr style="border-color:#355e6f;">
-  <div class="info-block">
-    <strong>使用方法</strong>
-    <p>時刻を自動入力もしくは手動入力することで、ポットは60分後、CEは90分後の時刻が表示されるようになります。</p>
-    <p>ポットタイマーは次回時刻の5分前に自動で音が鳴ります（CEタイマーは音が鳴らないようになっています）。</p>
-    <p>音の調整は上部の音量バーと音テストボタンから調整が可能です。</p>
-    <p>わからない点・機能追加要望などがあれば <strong>前川店長 (discord: t2maekawa_ / <a href="https://x.com/t2maekawa_inkya" target="_blank">X(twitter)</a>) </strong> までご連絡ください。</p>
-  </div>
+<div class="column90">
+<div id="task90"></div>
 </div>
+</div>
+
 </div>
 
 <audio id="beep" src="beep.mp3" preload="auto"></audio>
 
 <script>
-const STORAGE_KEY = 'crescent_ce_state';
-const VOLUME_KEY  = 'crescent_ce_volume';
+const STORAGE_KEY='crescent_ce_state';
+const VOLUME_KEY='crescent_ce_volume';
 
-const audio = document.getElementById('beep');
-const volume = document.getElementById('volume');
+const audio=document.getElementById('beep');
+const volume=document.getElementById('volume');
 
-volume.value = localStorage.getItem(VOLUME_KEY) ?? 0.5;
-audio.volume = volume.value;
+volume.value=localStorage.getItem(VOLUME_KEY)??0.5;
+audio.volume=volume.value;
 
 volume.addEventListener('input',()=>{
-  audio.volume = volume.value;
-  localStorage.setItem(VOLUME_KEY, volume.value);
+  audio.volume=volume.value;
+  localStorage.setItem(VOLUME_KEY,volume.value);
 });
 
-let lastCheckTime = new Date();
-
 const tasks60=[{label:"ポット: 北"},{label:"ポット: 南"}];
+
 const tasks90=[
-  {label:"鳥嫌い巨獣「ネオガルラ」",note:"KL1   ガルラ"},
-  {label:"黒の連隊",note:"KL14 パンサー"},
-  {label:"伝説の鮫「ニーム・ペタロドゥス」",note:"KL7   レッサーペタロドゥス"},
-  {label:"呪いの商亀「コイントートス」",note:"KL7   ケートス"},
-  {label:"セキュリティ・コマンドー",note:"KL8   ウラグナイト"},
-  {label:"石造りの守護騎士たち",note:"KL4   マロリス"},
-  {label:"二足の獅子「ランパントライオン」",note:"KL5   ファン"},
-  {label:"復元された獅子像「リペアドライオン」",note:"KL20 ステータント"},
-  {label:"昏き篝火「ヒンキーパンク」",note:"KL11 ハルピュイア"},
-  {label:"神秘の偶像「ミシカルアイドル」",note:"KL13 ビブロス"},
-  {label:"模造されしもの「水晶竜」",note:"KL19 クレイクロウ"},
-  {label:"脳髄愛好家「マインドフレイア」",note:"KL15 モンク"},
-  {label:"忍び寄る爪「デスクロー」",note:"KL16 ブラックガード"},
-  {label:"怒れる人造人間「クレセント・バーサーカー」",note:"KL17 デーモンポーン"},
-  {label:"封印大妖「クロイスターデーモン」",note:"KL20 インクステイン"}
+{label:"鳥嫌い巨獣「ネオガルラ」",note:"KL1 ガルラ"},
+{label:"黒の連隊",note:"KL14 パンサー"},
+{label:"伝説の鮫「ニーム・ペタロドゥス」",note:"KL7 レッサーペタロドゥス"},
+{label:"呪いの商亀「コイントートス」",note:"KL7 ケートス"},
+{label:"セキュリティ・コマンドー",note:"KL8 ウラグナイト"},
+{label:"石造りの守護騎士たち",note:"KL4 マロリス"},
+{label:"二足の獅子「ランパントライオン」",note:"KL5 ファン"},
+{label:"復元された獅子像「リペアドライオン」",note:"KL20 ステータント"},
+{label:"昏き篝火「ヒンキーパンク」",note:"KL11 ハルピュイア"},
+{label:"神秘の偶像「ミシカルアイドル」",note:"KL13 ビブロス"},
+{label:"模造されしもの「水晶竜」",note:"KL19 クレイクロウ"},
+{label:"脳髄愛好家「マインドフレイア」",note:"KL15 モンク"},
+{label:"忍び寄る爪「デスクロー」",note:"KL16 ブラックガード"},
+{label:"怒れる人造人間「クレセント・バーサーカー」",note:"KL17 デーモンポーン"},
+{label:"封印大妖「クロイスターデーモン」",note:"KL20 インクステイン"}
 ];
 
 const colors=[
 'row-yellow','row-yellow','row-orange','row-orange','row-orange',
-'row-purple','row-purple','row-purple','row-green','row-green','row-green',
-'row-blue','row-blue','row-blue','row-cyan'
+'row-purple','row-purple','row-purple',
+'row-green','row-green','row-green',
+'row-blue','row-blue','row-blue',
+'row-cyan'
 ];
 
-const c60 = document.getElementById('task60');
+const c60=document.getElementById('task60');
 tasks60.forEach((t,i)=>{
   c60.insertAdjacentHTML('beforeend',`
     <div class="task60" data-limit="60" data-id="60-${i}" data-beeped="0">
@@ -437,8 +300,8 @@ function saveState(){
   const data={};
   document.querySelectorAll('[data-id]').forEach(b=>{
     data[b.dataset.id]={
-      time:b.querySelector('input[type="time"]')?.value || '',
-      check:b.querySelector('input[type="checkbox"]')?.checked || false
+      time:b.querySelector('input[type="time"]')?.value||'',
+      check:b.querySelector('input[type="checkbox"]')?.checked||false
     };
   });
   localStorage.setItem(STORAGE_KEY,JSON.stringify(data));
@@ -453,69 +316,121 @@ function loadState(){
       b.querySelector('input[type="time"]').value=s.time;
       updateETA(b);
     }
-    if(b.querySelector('input[type="checkbox"]')){
-      b.querySelector('input[type="checkbox"]').checked=s.check;
-    }
+    const chk=b.querySelector('input[type="checkbox"]');
+    if(chk) chk.checked=s.check;
   });
 }
 
-function now(b){
-  const box = b.closest('[data-limit]');
-  const i   = box.querySelector('input[type="time"]');
-  const n   = new Date();
+function now(btn){
+  const box=btn.closest('[data-limit]');
+  const input=box.querySelector('input[type="time"]');
+  const n=new Date();
+  const hh=String(n.getHours()).padStart(2,'0');
+  const mm=String(n.getMinutes()).padStart(2,'0');
+  input.value=`${hh}:${mm}`;
 
-  const hh = String(n.getHours()).padStart(2,'0');
-  const mm = String(n.getMinutes()).padStart(2,'0');
-  i.value = `${hh}:${mm}`;
-
-  if(box.dataset.limit === "60"){
-    const all60 = [...document.querySelectorAll('.task60 input[type="time"]')];
-    const filled = all60.filter(t => t.value);
-
-    if(filled.length === 1){
-      const other = all60.find(t => t !== i);
-      if(other){
-        const d = new Date(n);
-        d.setMinutes(d.getMinutes() - 30);
-        other.value =
-          `${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
-        updateETA(other.closest('[data-limit]'));
-      }
+  if(box.dataset.limit==="60"){
+    const all=[...document.querySelectorAll('.task60 input[type="time"]')];
+    const filled=all.filter(t=>t.value);
+    if(filled.length===1){
+      const other=all.find(t=>t!==input);
+      const d=new Date(n);
+      d.setMinutes(d.getMinutes()-30);
+      other.value=`${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+      updateETA(other.closest('[data-limit]'));
     }
   }
-
   updateETA(box);
   saveState();
 }
 
-function clr(b){
-  const box=b.closest('[data-limit]');
+function clr(btn){
+  const box=btn.closest('[data-limit]');
   box.querySelector('input[type="time"]').value='';
   box.querySelector('.eta').textContent='';
-  box.classList.remove('highlight');
-  box.classList.remove('warning');
-  if(box.dataset.limit=="60") box.dataset.beeped="0";
+  box.classList.remove('highlight','warning');
+  if(box.dataset.limit==="60") box.dataset.beeped="0";
   saveState();
 }
 
 function updateETA(box){
-  const i = box.querySelector('input[type="time"]');
+  const i=box.querySelector('input[type="time"]');
   if(!i.value) return;
-  const [h,m] = i.value.split(':').map(Number);
-  const t = new Date();
+  const [h,m]=i.value.split(':').map(Number);
+  const t=new Date();
   t.setHours(h,m,0,0);
   t.setMinutes(t.getMinutes()+Number(box.dataset.limit));
-  box.querySelector('.eta').textContent = `次:  ${String(t.getHours()).padStart(2,'0')}:${String(t.getMinutes()).padStart(2,'0')}`;
-  if(box.dataset.limit=="60") box.dataset.beeped="0";
+  box.querySelector('.eta').textContent=`次: ${String(t.getHours()).padStart(2,'0')}:${String(t.getMinutes()).padStart(2,'0')}`;
+  if(box.dataset.limit==="60") box.dataset.beeped="0";
 }
 
 function check(){
-  const now = new Date();
+  const now=new Date();
   document.querySelectorAll('[data-limit]').forEach(r=>{
-    const i = r.querySelector('input[type="time"]');
+    const i=r.querySelector('input[type="time"]');
     if(!i.value){
-      r.classList.remove('highlight');
+      r.classList.remove('highlight','warning');
       return;
     }
+    const [h,m]=i.value.split(':').map(Number);
+    const start=new Date();
+    start.setHours(h,m,0,0);
+    if(start>now) start.setDate(start.getDate()-1);
+    const diff=(now-start)/60000;
+    const limit=Number(r.dataset.limit);
 
-    const
+    if(limit===60){
+      const left=Math.ceil(limit-diff);
+      r.classList.toggle('warning',left<=5&&left>=1);
+      r.classList.toggle('highlight',Math.floor(diff)===limit);
+
+      if(Math.floor(diff)===55 && r.dataset.beeped!=="1"){
+        audio.currentTime=0;
+        audio.play();
+        r.dataset.beeped="1";
+      }
+
+      if(Math.floor(diff)===limit){
+        const next=new Date(start);
+        next.setMinutes(next.getMinutes()+limit);
+        i.value=`${String(next.getHours()).padStart(2,'0')}:${String(next.getMinutes()).padStart(2,'0')}`;
+        updateETA(r);
+        r.dataset.beeped="0";
+        saveState();
+      }
+    }
+  });
+}
+
+document.addEventListener('change',e=>{
+  if(e.target.matches('input[type="time"],input[type="checkbox"]')){
+    updateETA(e.target.closest('[data-limit]'));
+    saveState();
+  }
+});
+
+function clearAllTimers(){
+  document.querySelectorAll('[data-limit]').forEach(box=>{
+    box.querySelector('input[type="time"]').value='';
+    box.querySelector('.eta').textContent='';
+    box.classList.remove('highlight','warning');
+    if(box.dataset.limit==="60") box.dataset.beeped="0";
+  });
+  saveState();
+}
+
+loadState();
+setInterval(check,1000);
+
+const currentTimeEl=document.querySelector('.ct-time');
+function updateCurrentTime(){
+  const n=new Date();
+  currentTimeEl.textContent=
+    `${String(n.getHours()).padStart(2,'0')}:${String(n.getMinutes()).padStart(2,'0')}:${String(n.getSeconds()).padStart(2,'0')}`;
+}
+updateCurrentTime();
+setInterval(updateCurrentTime,1000);
+</script>
+
+</body>
+</html>
