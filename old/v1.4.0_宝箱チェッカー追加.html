@@ -25,6 +25,7 @@ h2{margin-bottom:12px; text-align:center;}
   align-items:flex-start;
 }
 
+/* ===== 60分枠 ===== */
 .task60-column{
   display:flex;
   flex-direction:column;
@@ -43,27 +44,30 @@ h2{margin-bottom:12px; text-align:center;}
   width:100% !important;
   display:flex !important;
   flex-direction:column !important;
-  align-items:center !important;
+  align-items:center !important;   /* ← 完全中央基準 */
   gap:4px !important;
 }
 
+/* 時刻入力は inner 基準で横いっぱい */
 .task60-inner input[type="time"] {
-  width: 70px !important;
-  height: 24px !important;
-  padding: 2px 4px !important;
+  width: 70px !important;       /* 横幅 */
+  height: 24px !important;      /* 高さ */
+  padding: 2px 4px !important;  /* 内側余白 */
   margin-left:6px;
-  font-size: 12px !important;
-  border: 1px solid #355e6f;
-  border-radius: 4px !important;
-  box-sizing: border-box !important;
+  font-size: 12px !important;   /* 文字サイズ */
+  border: 1px solid #355e6f; /* 枠線 */
+  border-radius: 4px !important;         /* 角丸 */
+  box-sizing: border-box !important;     /* 幅にパディングとボーダーを含める */
 }
 
+/* ボタンは中身幅で中央 */
 .task60-inner .buttons{
   display:flex !important;
   gap:4px !important;
   justify-content:center  !important;
 }
 
+/* ボタンサイズを固定（歪み防止） */
 .task60-inner button{
   width:42px !important;
   flex:none !important;
@@ -92,8 +96,9 @@ h2{margin-bottom:12px; text-align:center;}
   margin-left:6px;
 }
 
+/* ===== マップ遷移ボタン ===== */
 .map-link{
-  width:100px;
+  width:100px;        /* task60 と同じ */
 }
 
 .map-button{
@@ -112,6 +117,7 @@ h2{margin-bottom:12px; text-align:center;}
   background:#34718f;
 }
 
+/* ETA表示 */
 .task60 .eta{
   font-size:16px;
   text-align:center;
@@ -119,11 +125,13 @@ h2{margin-bottom:12px; text-align:center;}
   font-weight:bold;
 }
 
+/* ★ 60分枠ハイライト */
 .task60.highlight{
   background:#c63c3c !important;
   color:#fff !important;
 }
 
+/* ===== 90分枠 ===== */
 .column90{flex:1;}
 
 .row{
@@ -179,6 +187,7 @@ button:hover{background:#4b5c80;}
   white-space:nowrap;
 }
 
+/* ETA表示 */
 .eta{
   margin-left:8px;
   font-size:15px;
@@ -187,6 +196,7 @@ button:hover{background:#4b5c80;}
   font-weight:bold;
 }
 
+/* ETA表示（90分枠用） */
 .row .eta{
   display:inline-block;
   width:78px;
@@ -198,6 +208,7 @@ button:hover{background:#4b5c80;}
   text-align:left;
 }
 
+/* ★ 90分枠ハイライト */
 .row.highlight{
   background:#d94c4c !important;
   color:#fff !important;
@@ -207,6 +218,7 @@ button:hover{background:#4b5c80;}
   .columns{flex-direction:column;}
 }
 
+/* ===== 音量コントロール ===== */
 .volume-box{
   text-align:center;
   margin-bottom:12px;
@@ -218,6 +230,7 @@ button:hover{background:#4b5c80;}
   vertical-align:middle;
 }
 
+/* ===== 機能説明エリア ===== */
 .info-area{
   margin-top:28px;
   padding:14px 18px;
@@ -244,16 +257,19 @@ button:hover{background:#4b5c80;}
   color:#9fd3ff;
 }
 
+/* 60分枠 ETA5~1分前ハイライト */
 .task60.warning{
   background:#f4e38a !important;
   color:#000 !important;
 }
 
+/* 時刻入力の時計アイコンを白にする（Chrome / Edge） */
 input[type="time"]::-webkit-calendar-picker-indicator {
   filter: invert(1);
   cursor: pointer;
 }
 
+/* 現在時刻表示 */
 .current-time{
   text-align:center;
   margin-bottom:16px;
@@ -279,6 +295,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 <div class="container">
 <h2>クレセントアイル:南征編</h2>
 
+<!-- ★ 音量バー -->
 <div class="volume-box">
   通知音量：
   <input id="volume" type="range" min="0" max="0.3" step="0.01">
@@ -298,6 +315,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 
 <div class="columns">
   <div class="task60-column" id="task60">
+    <!-- ★ 60分枠の下にボタン -->
     <div class="map-link" style="text-align:center;">
       <a href="map.html" target="_blank" style="text-decoration:none;">
         <button class="map-button">銅 / 銀箱</br>チェックマップ</button>
@@ -356,12 +374,14 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 </div>
 </div>
 
+<!-- ★ 通知音 -->
 <audio id="beep" src="beep.mp3" preload="auto"></audio>
 
 <script>
 const STORAGE_KEY = 'crescent_ce_state';
 const VOLUME_KEY  = 'crescent_ce_volume';
 
+/* ===== 音量管理 ===== */
 const audio = document.getElementById('beep');
 const volume = document.getElementById('volume');
 
@@ -373,8 +393,10 @@ volume.addEventListener('input',()=>{
   localStorage.setItem(VOLUME_KEY, volume.value);
 });
 
+/* ★ 前回チェック時刻 */
 let lastCheckTime = new Date();
 
+/* ===== データ ===== */
 const tasks60=[{label:"ポット: 北"},{label:"ポット: 南"}];
 const tasks90=[
   {label:"鳥嫌い巨獣「ネオガルラ」",note:"KL1   ガルラ"},
@@ -400,22 +422,28 @@ const colors=[
 'row-blue','row-blue','row-blue','row-cyan'
 ];
 
+/* ===== 生成 ===== */
 const c60 = document.getElementById('task60');
 tasks60.forEach((t,i)=>{
   c60.insertAdjacentHTML('beforeend',`
     <div class="task60" data-limit="60" data-id="60-${i}" data-beeped="0">
       <div class="label60">${t.label}</div>
+
+      <!-- ★ 追加：操作系ラッパー -->
       <div class="task60-inner">
         <input type="time">
+
         <div class="buttons">
           <button onclick="now(this)">現在</button>
           <button onclick="clr(this)">消去</button>
         </div>
       </div>
+
       <div class="eta"></div>
     </div>
   `);
 });
+
 
 const c90=document.getElementById('task90');
 tasks90.forEach((t,i)=>{
@@ -433,6 +461,7 @@ tasks90.forEach((t,i)=>{
   `);
 });
 
+/* ===== LocalStorage ===== */
 function saveState(){
   const data={};
   document.querySelectorAll('[data-id]').forEach(b=>{
@@ -459,6 +488,7 @@ function loadState(){
   });
 }
 
+/* ===== 共通処理 ===== */
 function now(b){
   const box = b.closest('[data-limit]');
   const i   = box.querySelector('input[type="time"]');
@@ -468,6 +498,7 @@ function now(b){
   const mm = String(n.getMinutes()).padStart(2,'0');
   i.value = `${hh}:${mm}`;
 
+  /* ★ 追加：60分枠・両方未入力ならもう片方に30分前を入れる */
   if(box.dataset.limit === "60"){
     const all60 = [...document.querySelectorAll('.task60 input[type="time"]')];
     const filled = all60.filter(t => t.value);
@@ -492,8 +523,8 @@ function clr(b){
   const box=b.closest('[data-limit]');
   box.querySelector('input[type="time"]').value='';
   box.querySelector('.eta').textContent='';
-  box.classList.remove('highlight');
-  box.classList.remove('warning');
+  box.classList.remove('highlight');  // 既存赤ハイライトリセット
+  box.classList.remove('warning');    // ★追加：黄色背景リセット
   if(box.dataset.limit=="60") box.dataset.beeped="0";
   saveState();
 }
@@ -506,9 +537,12 @@ function updateETA(box){
   t.setHours(h,m,0,0);
   t.setMinutes(t.getMinutes()+Number(box.dataset.limit));
   box.querySelector('.eta').textContent = `次:  ${String(t.getHours()).padStart(2,'0')}:${String(t.getMinutes()).padStart(2,'0')}`;
+
+  // ETA更新時に音フラグをリセット（60分枠のみ）
   if(box.dataset.limit=="60") box.dataset.beeped="0";
 }
 
+/* ★ ETA5分前通知（60分枠のみ） */
 function check(){
   const now = new Date();
   document.querySelectorAll('[data-limit]').forEach(r=>{
@@ -518,4 +552,88 @@ function check(){
       return;
     }
 
-    const
+    const [h,m] = i.value.split(':').map(Number);
+    const start = new Date();
+    start.setHours(h,m,0,0);
+    if(start > now) start.setDate(start.getDate()-1);
+
+    const diffNow = (now - start)/60000;
+    const limit = Number(r.dataset.limit);
+
+    if(limit===60){
+      if(!i.value) { // 時間未入力ならリセット
+        r.classList.remove('warning');
+        r.classList.remove('highlight');
+        return;
+      }
+
+      const minutesLeft = limit - diffNow;
+      const minutesLeftCeil = Math.ceil(minutesLeft);
+
+      // 5分〜1分前で黄色
+      r.classList.toggle('warning', minutesLeftCeil <= 5 && minutesLeftCeil >= 1);
+
+      // ETA到達で赤
+      r.classList.toggle('highlight', Math.floor(diffNow) === limit);
+
+      // 55分経過かつまだ鳴っていない場合
+      if(Math.floor(diffNow) === 55 && r.dataset.beeped !== "1"){
+        audio.currentTime = 0;
+        audio.play();
+        r.dataset.beeped = "1";
+      }
+
+      // ★ ETA到達で入力時刻を自動更新（60分枠のみ）
+      if(Math.floor(diffNow) === limit){
+        const next = new Date(start);
+        next.setMinutes(next.getMinutes() + limit);
+
+        i.value =
+        `${String(next.getHours()).padStart(2,'0')}:${String(next.getMinutes()).padStart(2,'0')}`;
+
+        updateETA(r);
+        r.dataset.beeped = "0"; // 次周回用
+        saveState();
+      }
+    }
+  });
+}
+
+document.addEventListener('change',e=>{
+  if(e.target.matches('input[type="time"],input[type="checkbox"]')){
+    updateETA(e.target.closest('[data-limit]'));
+    saveState();
+  }
+});
+
+function clearAllTimers(){
+  document.querySelectorAll('[data-limit]').forEach(box=>{
+    const time=box.querySelector('input[type="time"]');
+    const eta=box.querySelector('.eta');
+    if(time) time.value='';
+    if(eta) eta.textContent='';
+    box.classList.remove('highlight');
+    if(box.dataset.limit=="60") box.dataset.beeped="0";
+  });
+  saveState();
+}
+
+loadState();
+setInterval(check,1000);
+
+/* ===== 現在時刻表示 ===== */
+const currentTimeEl = document.querySelector('.ct-time');
+
+function updateCurrentTime(){
+  const now = new Date();
+  const hh = String(now.getHours()).padStart(2,'0');
+  const mm = String(now.getMinutes()).padStart(2,'0');
+  const ss = String(now.getSeconds()).padStart(2,'0');
+  currentTimeEl.textContent = `${hh}:${mm}:${ss}`;
+}
+
+updateCurrentTime();
+setInterval(updateCurrentTime, 1000);
+</script>
+</body>
+</html>

@@ -21,7 +21,6 @@ h2{
   margin:6px 0 8px;
 }
 
-/* ===== 上部UI ===== */
 .top-controls{
   display:flex;
   justify-content:center;
@@ -56,7 +55,6 @@ h2{
   text-align:left;
 }
 
-/* ===== マップ ===== */
 .map-outer{
   overflow:auto;
 }
@@ -76,7 +74,6 @@ h2{
   border-radius:6px;
 }
 
-/* ===== 宝箱 ===== */
 .chest{
   position:absolute;
   width:24px;
@@ -113,7 +110,6 @@ h2{
   pointer-events:none;
 }
 
-/* ===== 使い方 ===== */
 .help{
   margin-top:14px;
   padding:10px;
@@ -124,21 +120,19 @@ h2{
   opacity:0.95;
 }
 
-/* ===== ズームボタン調整 ===== */
 .zoom-group{
   display:flex;
   margin-left: 35px;
 }
 
 .zoom-group button{
-  width:32px;     /* 横幅を固定 */
-  height:28px;    /* 高さを固定 */
+  width:32px;
+  height:28px;
   padding:0;
   line-height:28px;
   font-size:16px;
 }
 
-/* ＋ − の間だけ隙間をなくす */
 .zoom-group button + button{
   margin-left:0;
 }
@@ -198,9 +192,7 @@ const map = document.getElementById('map');
 const zoomLabel = document.getElementById('zoomLabel');
 const state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
 
-/* ===== 宝箱データ ===== */
 const chests = [
-  /* --- 銅箱（60個） --- */
   { id:'c01', type:'copper', top:16.70, left:6.89 },
   { id:'c02', type:'copper', top:14.61, left:14.09 },
   { id:'c03', type:'copper', top:7.52, left:21.29 },
@@ -261,8 +253,6 @@ const chests = [
   { id:'c58', type:'copper', top:89.56, left:21.09 },
   { id:'c59', type:'copper', top:81.21, left:17.64 },
   { id:'c60', type:'copper', top:89.25, left:15.34 },
-
-  /* --- 銀箱（仮配置） --- */
   { id:'s01', type:'silver', top:9.29, left:9.39 },
   { id:'s02', type:'silver', top:34.86, left:11.06 },
   { id:'s03', type:'silver', top:40.50, left:16.81 },
@@ -273,7 +263,6 @@ const chests = [
   { id:'s08', type:'silver', top:84.76, left:18.16 },
 ];
 
-/* ===== 初期化 ===== */
 applyZoom();
 
 chests.forEach(c=>{
@@ -297,12 +286,10 @@ chests.forEach(c=>{
 
 updateCounters();
 
-/* ===== 保存 ===== */
 function save(){
   localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
 }
 
-/* ===== カウンター ===== */
 function updateCounters(){
   const copperAll = chests.filter(c=>c.type==='copper').length;
   const silverAll = chests.filter(c=>c.type==='silver').length;
@@ -316,7 +303,6 @@ function updateCounters(){
     `銀箱 [${silverGot} / ${silverAll}]`;
 }
 
-/* ===== 表示切替 ===== */
 function toggleType(type){
   toggleState[type] = !toggleState[type];
   document.querySelectorAll(`.chest.${type}`).forEach(c=>{
@@ -325,7 +311,6 @@ function toggleType(type){
   localStorage.setItem(TOGGLE_KEY, JSON.stringify(toggleState));
 }
 
-/* ===== ズーム ===== */
 function zoomIn(){
   zoom = Math.min(zoom + 0.1, 2.5);
   applyZoom();
@@ -347,7 +332,6 @@ function applyZoom(){
   localStorage.setItem(ZOOM_KEY, zoom);
 }
 
-/* ===== 全リセット ===== */
 function resetAll(){
   if(!confirm('全ての宝箱を未取得状態に戻しますか？')) return;
   document.querySelectorAll('.chest').forEach(c=>c.classList.remove('taken'));
