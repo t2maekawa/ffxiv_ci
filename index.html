@@ -485,7 +485,7 @@ function updateCurrentTime(){
 updateCurrentTime();
 setInterval(updateCurrentTime,1000);
 
-fetch('./README.md')
+fetch('README.md')
   .then(res => res.text())
   .then(md => {
     document.getElementById('readme').innerHTML = marked.parse(md);
