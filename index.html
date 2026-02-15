@@ -568,15 +568,24 @@ document.addEventListener('change',e=>{
 
 function clearAllTimers(){
   document.querySelectorAll('[data-limit]').forEach(box=>{
-    box.querySelector('input[type="time"]').value='';
-    box.querySelector('.eta').textContent='';
+    const input = box.querySelector('input[type="time"]');
+    const eta = box.querySelector('.eta');
+
+    if(input) input.value='';
+    if(eta) eta.textContent='';
+
+    // 60分用
     box.classList.remove('highlight','warning');
+
+    // ★ 90分用視覚リセット（確実）
+    box.classList.remove('done','overdue');
 
     if(box.dataset.limit==="60"){
       box.dataset.beeped="0";
-      delete box.dataset.etaTime; // ★ ETA基準を完全破棄
+      delete box.dataset.etaTime;
     }
   });
+
   saveState();
 }
 
