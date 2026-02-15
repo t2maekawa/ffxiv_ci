@@ -253,24 +253,6 @@ input[type="time"]::-webkit-calendar-picker-indicator{
 #readme h3 + p > strong:only-child{
   margin-top:1.6em;
 }
-
-.task60-inner button.sync-btn{
-  width:auto;
-  padding:4px 8px;
-  font-size:12px;
-  white-space:nowrap;
-}
-
-.row.done{
-  opacity:0.55;
-  transition:0.2s;
-}
-
-.row.overdue{
-  background:#d94c4c !important;
-  color:#fff !important;
-  opacity:1 !important;
-}
 </style>
 </head>
 
@@ -375,10 +357,6 @@ tasks60.forEach((t,i)=>{
           <button onclick="now(this)">現在</button>
           <button onclick="clr(this)">消去</button>
         </div>
-        <!-- ★ここ追加 -->
-        <div class="buttons">
-          <button onclick="syncPot(this)" class="sync-btn">手動同期</button>
-        </div>
       </div>
       <div class="eta"></div>
     </div>
@@ -454,7 +432,6 @@ function clr(btn){
   box.querySelector('input[type="time"]').value='';
   box.querySelector('.eta').textContent='';
   box.classList.remove('highlight','warning');
-  box.classList.remove('done','overdue');
 
   if(box.dataset.limit==="60"){
     box.dataset.beeped="0";
@@ -540,22 +517,6 @@ function check(){
         saveState();
       }
     }
-    if(limit===90){
-      const eta = new Date(start);
-      eta.setMinutes(eta.getMinutes() + limit);
-
-      if(i.value){
-        r.classList.add('done');
-        }else{
-          r.classList.remove('done');
-        }
-
-      if(now >= eta){
-        r.classList.add('overdue');
-        }else{
-        r.classList.remove('overdue');
-      }
-    }
   });
 }
 
@@ -601,31 +562,6 @@ fetch('README.md')
     document.getElementById('readme').textContent =
       'README.md の読み込みに失敗しました';
   });
-
-  function syncPot(btn){
-    const box = btn.closest('[data-limit]');
-    const input = box.querySelector('input[type="time"]');
-    if(!input.value) return;
-
-    const [h,m] = input.value.split(':').map(Number);
-    const base = new Date();
-    base.setHours(h,m,0,0);
-    base.setMinutes(base.getMinutes() - 30);
-
-    const hh = String(base.getHours()).padStart(2,'0');
-    const mm = String(base.getMinutes()).padStart(2,'0');
-
-    // もう一方のポットを取得
-    const all = [...document.querySelectorAll('.task60')];
-    const other = all.find(b => b !== box);
-    if(!other) return;
-
-    const otherInput = other.querySelector('input[type="time"]');
-    otherInput.value = `${hh}:${mm}`;
-
-    updateETA(other);
-    saveState();
-  }
 
 </script>
 
