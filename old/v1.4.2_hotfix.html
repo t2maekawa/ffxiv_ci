@@ -327,24 +327,6 @@ input[type="time"]::-webkit-calendar-picker-indicator{
 </div>
 </div>
 
-<div id="share-area" style="margin-top:18px;background:#222b45;padding:12px;border-radius:8px;">
-<h3 style="text-align:center;color:#9fd3ff;margin:10px;">タイマー共有</h3>
-
-<div style="margin-bottom:8px;text-align:center;">
-<button onclick="exportAllTimes()">全時刻を出力</button>
-<button onclick="exportFilledTimes()">入力済を出力</button>
-<button onclick="copyShareText()">コピー</button>
-</div>
-
-<textarea id="share-output" style="width:100%;height:60px;"></textarea>
-
-<div style="margin-top:10px;text-align:center;">
-<button onclick="importShareText()">入力をタイマーに反映</button>
-</div>
-
-<textarea id="share-input" style="width:100%;height:60px;"></textarea>
-</div>
-
 </div>
 
 <div class="info-area">
@@ -436,26 +418,6 @@ tasks90.forEach((t,i)=>{
   `);
 });
 
-const shareMap={
-"ﾎﾟｯﾄ北":"60-0",
-"ﾎﾟｯﾄ南":"60-1",
-"ｶﾞﾙﾗ":"90-0",
-"ﾁｮｺﾎﾞ":"90-1",
-"ｻﾒ":"90-2",
-"ｶﾒ":"90-3",
-"ｺﾏﾝﾄﾞ":"90-4",
-"石像":"90-5",
-"ﾗﾝﾊﾟ":"90-6",
-"ﾘﾍﾟｱ":"90-7",
-"ﾋﾝｷｰ":"90-8",
-"ｱｲﾄﾞﾙ":"90-9",
-"水晶竜":"90-10",
-"ﾏｲﾝﾄﾞ":"90-11",
-"ﾃﾞｽｸﾛｰ":"90-12",
-"ﾊﾞｻｶ":"90-13",
-"ｸﾛｲ":"90-14"
-};
-
 function saveState(){
   const data={};
   document.querySelectorAll('[data-id]').forEach(b=>{
@@ -501,10 +463,6 @@ function now(btn){
     }
   }
   updateETA(box);
-
-  const chk = box.querySelector('input[type="checkbox"]');
-  if(chk) chk.checked = false;
-
   saveState();
 }
 
@@ -514,9 +472,6 @@ function clr(btn){
   box.querySelector('.eta').textContent='';
   box.classList.remove('highlight','warning');
   box.classList.remove('done','overdue');
-
-  const chk = box.querySelector('input[type="checkbox"]');
-  if(chk) chk.checked = false;
 
   if(box.dataset.limit==="60"){
     box.dataset.beeped="0";
@@ -543,7 +498,7 @@ function updateETA(box){
   if(box.dataset.limit === "60"){
     box.querySelector('.eta').innerHTML =
       `次: ${hh}:${mm}<br>あと -- 分後`;
-    box.dataset.etaTime = eta.getTime(); //  ETAを保存
+    box.dataset.etaTime = eta.getTime(); // ★ ETAを保存
     box.dataset.beeped = "0";
   }else{
     box.querySelector('.eta').textContent =
@@ -686,6 +641,7 @@ fetch('README.md')
     const hh = String(base.getHours()).padStart(2,'0');
     const mm = String(base.getMinutes()).padStart(2,'0');
 
+    // もう一方のポットを取得
     const all = [...document.querySelectorAll('.task60')];
     const other = all.find(b => b !== box);
     if(!other) return;
@@ -696,68 +652,6 @@ fetch('README.md')
     updateETA(other);
     saveState();
   }
-
-  function exportAllTimes(){
-  let result=[];
-
-  for(const label in shareMap){
-    const id=shareMap[label];
-    const box=document.querySelector(`[data-id="${id}"]`);
-    const input=box.querySelector('input[type="time"]');
-    const time=input.value || "--:--";
-    result.push(`${label}[${time}]`);
-  }
-
-  document.getElementById('share-output').value=result.join(" ");
-}
-
-function exportFilledTimes(){
-  let result=[];
-
-  for(const label in shareMap){
-    const id=shareMap[label];
-    const box=document.querySelector(`[data-id="${id}"]`);
-    const input=box.querySelector('input[type="time"]');
-
-    if(input.value){
-      result.push(`${label}[${input.value}]`);
-    }
-  }
-
-  document.getElementById('share-output').value=result.join(" ");
-}
-
-function copyShareText(){
-  const txt=document.getElementById('share-output');
-  txt.select();
-  document.execCommand("copy");
-}
-
-function importShareText(){
-
-  const text=document.getElementById('share-input').value;
-
-  const regex=/([^\[\]\s]+)\[(\d\d:\d\d)\]/g;
-  let match;
-
-  while((match=regex.exec(text))!==null){
-
-    const label=match[1];
-    const time=match[2];
-
-    const id=shareMap[label];
-    if(!id) continue;
-
-    const box=document.querySelector(`[data-id="${id}"]`);
-    const input=box.querySelector('input[type="time"]');
-
-    input.value=time;
-
-    updateETA(box);
-  }
-
-  saveState();
-}
 
 </script>
 
