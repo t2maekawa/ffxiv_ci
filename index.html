@@ -309,7 +309,7 @@ input[type="time"]::-webkit-calendar-picker-indicator{
 <div class="task60-column" id="task60">
 <div class="link-style" style="text-align:center;">
 <a href="Northern.html" target="_blank" style="text-decoration:none;">
-<button class="link-button button-orange">北征編<br>(準備中)</button>
+<button class="link-button button-orange" style="font-size:20px;">北征編</button>
 <!-- 北征編 コンテンツ実装前 -->
 <!-- <<button class="link-button button-orange">北征編<br>(準備中)</button> -->
 <!-- 北征編 コンテンツ実装後 -->
@@ -360,8 +360,8 @@ input[type="time"]::-webkit-calendar-picker-indicator{
 
 <script>
 marked.setOptions({ breaks: true });
-const STORAGE_KEY='crescent_ce_state';
-const VOLUME_KEY='crescent_ce_volume';
+const STORAGE_KEY='crescent_ce_state_southern';
+const VOLUME_KEY='crescent_ce_volume_southern';
 
 const audio=document.getElementById('beep');
 const volume=document.getElementById('volume');
@@ -440,23 +440,23 @@ tasks90.forEach((t,i)=>{
 });
 
 const shareMap={
-"ﾎﾟｯﾄ北":"60-0",
-"ﾎﾟｯﾄ南":"60-1",
-"ｶﾞﾙﾗ":"90-0",
-"ﾁｮｺﾎﾞ":"90-1",
-"ｻﾒ":"90-2",
-"ｶﾒ":"90-3",
-"ｺﾏﾝﾄﾞ":"90-4",
-"石像":"90-5",
-"ﾗﾝﾊﾟ":"90-6",
-"ﾘﾍﾟｱ":"90-7",
-"ﾋﾝｷｰ":"90-8",
-"ｱｲﾄﾞﾙ":"90-9",
-"水晶竜":"90-10",
-"ﾏｲﾝﾄﾞ":"90-11",
-"ﾃﾞｽｸﾛｰ":"90-12",
-"ﾊﾞｻｶ":"90-13",
-"ｸﾛｲ":"90-14"
+  "ﾎﾟｯﾄ北":"60-0",
+  "ﾎﾟｯﾄ南":"60-1",
+  "ｶﾞﾙﾗ":"90-0",
+  "ﾁｮｺﾎﾞ":"90-1",
+  "ｻﾒ":"90-2",
+  "ｶﾒ":"90-3",
+  "ｺﾏﾝﾄﾞ":"90-4",
+  "石像":"90-5",
+  "ﾗﾝﾊﾟ":"90-6",
+  "ﾘﾍﾟｱ":"90-7",
+  "ﾋﾝｷｰ":"90-8",
+  "ｱｲﾄﾞﾙ":"90-9",
+  "水晶竜":"90-10",
+  "ﾏｲﾝﾄﾞ":"90-11",
+  "ﾃﾞｽｸﾛｰ":"90-12",
+  "ﾊﾞｻｶ":"90-13",
+  "ｸﾛｲ":"90-14"
 };
 
 function saveState(){

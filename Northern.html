@@ -18,14 +18,747 @@ body{
 .container{max-width:1050px;margin:auto;}
 h2{margin-bottom:12px; text-align:center;}
 .columns{display:flex;gap:16px;align-items:flex-start;}
+
+.task60-column{display:flex;flex-direction:column;gap:8px;}
+.task60{
+  background:#2a5f78;
+  border-radius:6px;
+  padding:6px;
+  width:100px;
+  color:#fff;
+}
+.task60-inner{
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:4px;
+}
+.task60-inner input[type="time"]{
+  width:70px;
+  height:24px;
+  padding:2px 4px;
+  margin-left:6px;
+  font-size:12px;
+  border:1px solid #355e6f;
+  border-radius:4px;
+  box-sizing:border-box;
+}
+.task60-inner .buttons{
+  display:flex;
+  gap:4px;
+  margin-left: 6px;
+  justify-content:center;
+}
+.task60-inner button{
+  width:42px;
+  flex:none;
+}
+.task60 .label60{
+  font-size:12px;
+  font-weight:700;
+  text-align:center;
+  margin-bottom:4px;
+}
+.task60 .eta{
+  font-size:16px;
+  text-align:center;
+  font-weight:bold;
+}
+.task60.highlight{
+  background:#c63c3c;
+  color:#fff;
+}
+.task60.warning{
+  background:#f4e38a;
+  color:#000;
+}
+
+.link-style{width:100px;}
+.link-button{
+  width:112%;
+  padding:6px;
+  font-size:12px;
+  font-weight:700;
+  background:#2a5f78;
+  color:#fff;
+  border:1px solid #355e6f;
+  border-radius:6px;
+  cursor:pointer;
+}
+.link-button:hover{background:#34718f;}
+
+.column90{flex:1;}
+.row{
+  display:flex;
+  align-items:center;
+  margin-bottom:8px;
+  padding:6px 8px;
+  border-radius:4px;
+}
+.row-yellow{background:#f4e38a;color:#000;}
+.row-orange{background:#f5c493;color:#000;}
+.row-purple{background:#cbb4e7;color:#000;}
+.row-green{background:#a9ddb4;color:#000;}
+.row-blue{background:#a2c8e5;color:#000;}
+.row-cyan{background:#a1e0e7;color:#000;}
+
+.label{width:340px;font-weight:bold;}
+input[type="time"]{
+  background:#1e1e2e;
+  color:#fff;
+  border:1px solid #444;
+  padding:2px 4px;
+  width:72px;
+  margin-right:6px;
+}
+input.note{
+  background:#1e1e2e;
+  color:#ccc;
+  border:1px solid #444;
+  padding:4px;
+  width:180px;
+}
+button{
+  background:#3a4b6e;
+  color:#fff;
+  border:1px solid #5a6b8e;
+  cursor:pointer;
+  margin-right:6px;
+}
+button:hover{background:#4b5c80;}
+
+.checkbox-label{
+  margin-left:8px;
+  font-size:13px;
+  white-space:nowrap;
+}
+.row .eta{
+  display:inline-block;
+  width:78px;
+  margin-left:8px;
+  font-size:15px;
+  white-space:nowrap;
+  font-weight:bold;
+}
+.row.highlight{
+  background:#d94c4c;
+  color:#fff;
+}
+
+@media(max-width:900px){
+  .columns{flex-direction:column;}
+}
+
+.volume-box{
+  text-align:center;
+  margin-bottom:12px;
+  font-size:14px;
+}
+.volume-box input[type="range"]{
+  width:160px;
+  vertical-align:middle;
+}
+
+.current-time{
+  text-align:center;
+  margin-bottom: 10px;
+  color:#9fd3ff;
+}
+.ct-label{
+  font-size:16px;
+  font-weight:bold;
+}
+.ct-time{
+  font-size:26px;
+  font-weight:bold;
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator{
+  filter:invert(1);
+  cursor:pointer;
+}
+
+.info-area h1,
+.info-area h2,
+.info-area h3{
+  text-align:center;
+  color:#9fd3ff;
+}
+
+.info-area ul{
+  padding-left:20px;
+}
+
+/* README 表示エリア */
+#readme-container{
+  max-width:1050px;
+  margin:24px auto 0;
+  padding:16px 20px;
+  background:#222b45;
+  border-radius:8px;
+  border:1px solid #2f3a5c;
+  box-sizing:border-box;
+}
+
+#readme{
+  max-width:1050px;
+  font-size:14px;
+  line-height:1.7;
+  color:#e6ecff;
+}
+
+#readme h1,
+#readme h2,
+#readme h3{
+  margin-top:1.4em;
+  margin-bottom:0.6em;
+  border-bottom:1px solid #3a4b6e;
+  padding-bottom:4px;
+}
+
+#readme ul{
+  padding-left:1.4em;
+}
+#readme li{
+  margin:4px 0;
+}
+
+#readme strong{
+  color:#ffffff;
+}
+
+#readme code{
+  background:#1e1e2e;
+  padding:2px 6px;
+  border-radius:4px;
+  font-size:13px;
+}
+
+#readme hr{
+  border:none;
+  border-top:1px solid #3a4b6e;
+  margin:16px 0;
+}
+
+#readme p > strong:only-child{
+  display:block;
+  margin:1.4em 0 0.6em;
+  font-size:15px;
+  font-weight:700;
+  color:#ffffff;
+}
+
+#readme h1 + p > strong:only-child,
+#readme h2 + p > strong:only-child,
+#readme h3 + p > strong:only-child{
+  margin-top:1.6em;
+}
+
+.task60-inner button.sync-btn{
+  width:auto;
+  padding:4px 8px;
+  font-size:12px;
+  white-space:nowrap;
+}
+
+.row.done{
+  opacity:0.55;
+  transition:0.2s;
+}
+
+.row.overdue{
+  background:#d94c4c !important;
+  color:#fff !important;
+  opacity:1 !important;
+}
+
+.row input[type="checkbox"]{
+  transform: scale(1.4);
+  margin-left:6px;
+}
+
+.button-orange{background:#ff4500;}
+.button-orange:hover{background:#ff6a33;}
 </style>
 </head>
 
 <body>
 <div class="container">
 
-<h2>クレセントアイル:北征編</h2>
-<div style="text-align:center;">coming soon</div>
+<h2>クレセントアイル:南征編</h2>
+
+<div class="volume-box">
+通知音量：
+<input id="volume" type="range" min="0" max="0.3" step="0.01">
+<button onclick="audio.currentTime=0;audio.play();">音テスト</button>
+</div>
+
+<div style="text-align:center;margin-bottom:12px;">
+<button onclick="clearAllTimers()" style="font-size:14px;padding:6px 14px;">
+全タイマークリア
+</button>
+</div>
+
+<div id="current-time" class="current-time">
+<div class="ct-label">現在時刻</div>
+<div class="ct-time">--:--:--</div>
+</div>
+
+<div class="columns">
+<div class="task60-column" id="task60">
+<div class="link-style" style="text-align:center;">
+<a href="index.html" target="_blank" style="text-decoration:none;">
+<button class="link-button button-orange" style="font-size:20px;">南征編</button>
+<!-- 北征編 コンテンツ実装前 -->
+<!-- <<button class="link-button button-orange">北征編<br>(準備中)</button> -->
+<!-- 北征編 コンテンツ実装後 -->
+<!-- <button class="link-button button-orange" style="font-size:20px;">北征編</button> -->
+</a>
+</div>
+<div class="link-style" style="text-align:center;">
+<a href="Southern_map.html" target="_blank" style="text-decoration:none;">
+<button class="link-button">銅 / 銀箱<br>チェックマップ</button>
+</a>
+</div>
+</div>
+
+<div class="column90">
+<div id="task90"></div>
+</div>
+</div>
+
+<div id="share-area" style="margin-top:18px;background:#222b45;padding:12px;border-radius:8px;">
+<h3 style="text-align:center;color:#9fd3ff;margin:10px;">タイマー共有</h3>
+
+<div style="margin-bottom:8px;text-align:center;">
+<button onclick="exportAllTimes()">全時刻を出力</button>
+<button onclick="exportFilledTimes()">入力済を出力</button>
+<button onclick="copyShareText()">コピー</button>
+</div>
+
+<textarea id="share-output" style="width:100%;height:60px;"></textarea>
+
+<div style="margin-top:10px;margin-bottom:8px;text-align:center;">
+<button onclick="importShareText()">入力をタイマーに反映</button>
+</div>
+
+<textarea id="share-input" style="width:100%;height:60px;"></textarea>
+</div>
+
+</div>
+
+<div class="info-area">
+  <div id="readme-container">
+    <div id="readme"></div>
+  </div>
+</div>
+
+<audio id="beep" src="beep1.mp3" preload="auto"></audio>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+<script>
+marked.setOptions({ breaks: true });
+const STORAGE_KEY='crescent_ce_state_northern';
+const VOLUME_KEY='crescent_ce_volume_northern';
+
+const audio=document.getElementById('beep');
+const volume=document.getElementById('volume');
+
+volume.value=localStorage.getItem(VOLUME_KEY)??0.5;
+audio.volume=volume.value;
+
+volume.addEventListener('input',()=>{
+  audio.volume=volume.value;
+  localStorage.setItem(VOLUME_KEY,volume.value);
+});
+
+const tasks60=[{label:"ポット: 北"},{label:"ポット: 南"}];
+
+const tasks90=[
+{label:"禁忌の魔導書「アルバテル」",note:""},
+{label:"覚醒の多頭竜「マギ・ヒュドラ」",note:""},
+{label:"呪いを継ぐ者「ペイルマギア」",note:""},
+{label:"猟奇の母蜘蛛「クレセント・アルケニー」",note:""},
+{label:"死霊使いの亡霊「マギ・ネクロマンサー」",note:""},
+{label:"大食の呪鬼「アルゴル」",note:""},
+{label:"魔道兵団「タイニーメイジ」",note:""},
+{label:"白の守護者「アラバスターブレード」",note:""},
+{label:"暗紅の屍竜「ルブルムドラゴン」",note:""},
+{label:"変化の使い魔「メタモルファ」",note:""},
+{label:"反逆の使い魔「アトラス·カーバンクル」",note:""},
+{label:"求道の人造人間「エルムギガース」",note:""},
+{label:"絶島の誘拐者「アブダクター」",note:""},
+{label:"魔女の複製体「カロフィステリ・ダブル」",note:""},
+];
+
+const colors=[
+'row-purple','row-purple','row-purple','row-purple',
+'row-blue','row-blue','row-blue','row-blue','row-blue',
+'row-cyan','row-cyan','row-cyan','row-cyan','row-cyan',
+];
+
+const c60=document.getElementById('task60');
+tasks60.forEach((t,i)=>{
+  c60.insertAdjacentHTML('beforeend',`
+    <div class="task60" data-limit="60" data-id="60-${i}" data-beeped="0">
+      <div class="label60">${t.label}</div>
+      <div class="task60-inner">
+        <input type="time">
+        <div class="buttons">
+          <button onclick="now(this)">現在</button>
+          <button onclick="clr(this)">消去</button>
+        </div>
+        <!-- ★ここ追加 -->
+        <div class="buttons">
+          <button onclick="syncPot(this)" class="sync-btn">手動同期</button>
+        </div>
+      </div>
+      <div class="eta"></div>
+    </div>
+  `);
+});
+
+const c90=document.getElementById('task90');
+tasks90.forEach((t,i)=>{
+  c90.insertAdjacentHTML('beforeend',`
+    <div class="row ${colors[i]}" data-limit="90" data-id="90-${i}">
+      <span class="label">${t.label}</span>
+      <span class="eta"></span>
+      <input type="time">
+      <button onclick="now(this)">現在時刻</button>
+      <button onclick="clr(this)">クリア</button>
+      <input class="note" value="${t.note}" readonly>
+      <span class="checkbox-label">仕込み</span>
+      <input type="checkbox">
+    </div>
+  `);
+});
+
+const shareMap={
+"ﾎﾟｯﾄ北":"60-0",
+"ﾎﾟｯﾄ南":"60-1",
+"魔導書":"90-0",
+"ヒュドラ":"90-1",
+"マギア":"90-2",
+"母蜘蛛":"90-3",
+"ネクロ":"90-4",
+"アルゴル":"90-5",
+"メイジ":"90-6",
+"ｱﾗﾊﾞｽﾀ":"90-7",
+"屍竜":"90-8",
+"メタモル":"90-9",
+"かーくん":"90-10",
+"ギガース":"90-11",
+"アブダク":"90-12",
+"魔女":"90-13",
+};
+
+function saveState(){
+  const data={};
+  document.querySelectorAll('[data-id]').forEach(b=>{
+    data[b.dataset.id]={
+      time:b.querySelector('input[type="time"]')?.value||'',
+      check:b.querySelector('input[type="checkbox"]')?.checked||false
+    };
+  });
+  localStorage.setItem(STORAGE_KEY,JSON.stringify(data));
+}
+
+function loadState(){
+  const data=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');
+  document.querySelectorAll('[data-id]').forEach(b=>{
+    const s=data[b.dataset.id];
+    if(!s) return;
+    if(s.time){
+      b.querySelector('input[type="time"]').value=s.time;
+      updateETA(b);
+    }
+    const chk=b.querySelector('input[type="checkbox"]');
+    if(chk) chk.checked=s.check;
+  });
+}
+
+function now(btn){
+  const box=btn.closest('[data-limit]');
+  const input=box.querySelector('input[type="time"]');
+  const n=new Date();
+  const hh=String(n.getHours()).padStart(2,'0');
+  const mm=String(n.getMinutes()).padStart(2,'0');
+  input.value=`${hh}:${mm}`;
+
+  if(box.dataset.limit==="60"){
+    const all=[...document.querySelectorAll('.task60 input[type="time"]')];
+    const filled=all.filter(t=>t.value);
+    if(filled.length===1){
+      const other=all.find(t=>t!==input);
+      const d=new Date(n);
+      d.setMinutes(d.getMinutes()-30);
+      other.value=`${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+      updateETA(other.closest('[data-limit]'));
+    }
+  }
+  updateETA(box);
+
+  const chk = box.querySelector('input[type="checkbox"]');
+  if(chk) chk.checked = false;
+
+  saveState();
+}
+
+function clr(btn){
+  const box=btn.closest('[data-limit]');
+  box.querySelector('input[type="time"]').value='';
+  box.querySelector('.eta').textContent='';
+  box.classList.remove('highlight','warning');
+  box.classList.remove('done','overdue');
+
+  const chk = box.querySelector('input[type="checkbox"]');
+  if(chk) chk.checked = false;
+
+  if(box.dataset.limit==="60"){
+    box.dataset.beeped="0";
+    delete box.dataset.etaTime;
+  }
+
+  saveState();
+}
+
+function updateETA(box){
+  const i = box.querySelector('input[type="time"]');
+  if(!i.value) return;
+
+  const [h,m] = i.value.split(':').map(Number);
+  const start = new Date();
+  start.setHours(h,m,0,0);
+
+  const eta = new Date(start);
+  eta.setMinutes(eta.getMinutes() + Number(box.dataset.limit));
+
+  const hh = String(eta.getHours()).padStart(2,'0');
+  const mm = String(eta.getMinutes()).padStart(2,'0');
+
+  if(box.dataset.limit === "60"){
+    box.querySelector('.eta').innerHTML =
+      `次: ${hh}:${mm}<br>あと -- 分後`;
+    box.dataset.etaTime = eta.getTime(); //  ETAを保存
+    box.dataset.beeped = "0";
+  }else{
+    box.querySelector('.eta').textContent =
+      `次: ${hh}:${mm}`;
+  }
+}
+
+function check(){
+  const now=new Date();
+  document.querySelectorAll('[data-limit]').forEach(r=>{
+    const i=r.querySelector('input[type="time"]');
+    // ===== 60分枠：残り時間表示（ETA参照）=====
+    if(r.dataset.limit === "60" && r.dataset.etaTime){
+      const nowTime = now.getTime();
+      const diff = Math.max(0, r.dataset.etaTime - nowTime);
+
+      const min = Math.ceil(diff / 60000); // 分のみ（切り上げ）
+
+      const mm = String(min).padStart(2,'0');
+
+      const etaDiv = r.querySelector('.eta');
+      if(etaDiv){
+        const lines = etaDiv.innerHTML.split('<br>');
+        lines[1] = `あと ${mm} 分後`;
+        etaDiv.innerHTML = lines.join('<br>');
+      }
+    }
+    if(!i.value){
+      r.classList.remove('highlight','warning');
+      return;
+    }
+    const [h,m]=i.value.split(':').map(Number);
+    const start=new Date();
+    start.setHours(h,m,0,0);
+    if(start>now) start.setDate(start.getDate()-1);
+    const diff=(now-start)/60000;
+    const limit=Number(r.dataset.limit);
+
+    if(limit===60){
+      const left=Math.ceil(limit-diff);
+      r.classList.toggle('warning',left<=5&&left>=1);
+      r.classList.toggle('highlight',Math.floor(diff)===limit);
+
+      if(Math.floor(diff)===55 && r.dataset.beeped!=="1"){
+        audio.currentTime=0;
+        audio.play();
+        r.dataset.beeped="1";
+      }
+
+      if(Math.floor(diff)===limit){
+        const next=new Date(start);
+        next.setMinutes(next.getMinutes()+limit);
+        i.value=`${String(next.getHours()).padStart(2,'0')}:${String(next.getMinutes()).padStart(2,'0')}`;
+        updateETA(r);
+        r.dataset.beeped="0";
+        saveState();
+      }
+    }
+    if(limit===90){
+      const eta = new Date(start);
+      eta.setMinutes(eta.getMinutes() + limit);
+
+      if(i.value){
+        r.classList.add('done');
+        }else{
+          r.classList.remove('done');
+        }
+
+      if(now >= eta){
+        r.classList.add('overdue');
+        }else{
+        r.classList.remove('overdue');
+      }
+    }
+  });
+}
+
+document.addEventListener('change',e=>{
+  if(e.target.matches('input[type="time"],input[type="checkbox"]')){
+    updateETA(e.target.closest('[data-limit]'));
+    saveState();
+  }
+});
+
+function clearAllTimers(){
+  document.querySelectorAll('[data-limit]').forEach(box=>{
+    const input = box.querySelector('input[type="time"]');
+    const eta = box.querySelector('.eta');
+
+    if(input) input.value='';
+    if(eta) eta.textContent='';
+
+    // 60分用
+    box.classList.remove('highlight','warning');
+    // 90分用
+    box.classList.remove('done','overdue');
+
+    if(box.dataset.limit==="60"){
+      box.dataset.beeped="0";
+      delete box.dataset.etaTime;
+    }
+    document.querySelectorAll('.row input[type="checkbox"]').forEach(c=>c.checked=false);
+  });
+
+  saveState();
+}
+
+loadState();
+setInterval(check,1000);
+
+const currentTimeEl=document.querySelector('.ct-time');
+function updateCurrentTime(){
+  const n=new Date();
+  currentTimeEl.textContent=
+    `${String(n.getHours()).padStart(2,'0')}:${String(n.getMinutes()).padStart(2,'0')}:${String(n.getSeconds()).padStart(2,'0')}`;
+}
+updateCurrentTime();
+setInterval(updateCurrentTime,1000);
+
+fetch('README.md')
+  .then(res => res.text())
+  .then(md => {
+    document.getElementById('readme').innerHTML = marked.parse(md);
+  })
+  .catch(() => {
+    document.getElementById('readme').textContent =
+      'README.md の読み込みに失敗しました';
+  });
+
+  function syncPot(btn){
+    const box = btn.closest('[data-limit]');
+    const input = box.querySelector('input[type="time"]');
+    if(!input.value) return;
+
+    const [h,m] = input.value.split(':').map(Number);
+    const base = new Date();
+    base.setHours(h,m,0,0);
+    base.setMinutes(base.getMinutes() - 30);
+
+    const hh = String(base.getHours()).padStart(2,'0');
+    const mm = String(base.getMinutes()).padStart(2,'0');
+
+    const all = [...document.querySelectorAll('.task60')];
+    const other = all.find(b => b !== box);
+    if(!other) return;
+
+    const otherInput = other.querySelector('input[type="time"]');
+    otherInput.value = `${hh}:${mm}`;
+
+    updateETA(other);
+    saveState();
+  }
+
+  function exportAllTimes(){
+  let result=[];
+
+  for(const label in shareMap){
+    const id=shareMap[label];
+    const box=document.querySelector(`[data-id="${id}"]`);
+    const input=box.querySelector('input[type="time"]');
+    const time=input.value || "--:--";
+    result.push(`${label}[${time}]`);
+  }
+
+  document.getElementById('share-output').value=result.join(" ");
+}
+
+function exportFilledTimes(){
+  let result=[];
+
+  for(const label in shareMap){
+    const id=shareMap[label];
+    const box=document.querySelector(`[data-id="${id}"]`);
+    const input=box.querySelector('input[type="time"]');
+
+    if(input.value){
+      result.push(`${label}[${input.value}]`);
+    }
+  }
+
+  document.getElementById('share-output').value=result.join(" ");
+}
+
+function copyShareText(){
+  const txt=document.getElementById('share-output');
+  txt.select();
+  document.execCommand("copy");
+}
+
+function importShareText(){
+
+  const text=document.getElementById('share-input').value;
+
+  const regex=/([^\[\]\s]+)\[(\d\d:\d\d)\]/g;
+  let match;
+
+  while((match=regex.exec(text))!==null){
+
+    const label=match[1];
+    const time=match[2];
+
+    const id=shareMap[label];
+    if(!id) continue;
+
+    const box=document.querySelector(`[data-id="${id}"]`);
+    const input=box.querySelector('input[type="time"]');
+
+    input.value=time;
+
+    updateETA(box);
+  }
+
+  saveState();
+}
+
+</script>
 
 </body>
 </html>
